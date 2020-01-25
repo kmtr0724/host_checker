@@ -1,0 +1,4 @@
+# host_checker
+指定したホストとportでtcp接続を行い、死活監視するツール
+cronで起動
+同ディレクトリにconfigを配置
