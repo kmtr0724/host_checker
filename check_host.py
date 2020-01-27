@@ -9,7 +9,7 @@ import json
 def checkhost(host,port):
     try:
         client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        client.settimeout(2)
+        client.settimeout(4)
         client.connect((host, port)) 
         #client.send(data) 
         response = client.recv(1024) 
