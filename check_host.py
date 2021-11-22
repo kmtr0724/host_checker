@@ -43,20 +43,20 @@ for key in checklist_a:
     host_a = key.split(':')
     host = host_a[0]
     port = int(host_a[1])
-    
+
     dt_now = datetime.datetime.now()
     now_str = (dt_now.strftime('%Y-%m-%d %H:%M:%S'))+": "
     ret = checkhost(host,port)
     if ret==False:
         #Host is down
-        targets_dic[key] = "0"
-        if checklist_a[key] == "1":
+        targets_dic[key] = str(int(checklist_a[key]) + 1)
+        if int(checklist_a[key]) == 2:
             #Host was up before
             sendMessageToDiscord(discord_webhook,now_str+"Host Down " + key)
     else:
         #Host is up
-        targets_dic[key] = "1"
-        if checklist_a[key] == "0":
+        targets_dic[key] = "0"
+        if int(checklist_a[key]) >= 2:
             #Host was down before
             sendMessageToDiscord(discord_webhook,now_str+"Host Up " + key)
 out_json_a={'targets':targets_dic}
